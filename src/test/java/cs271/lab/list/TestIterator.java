@@ -48,17 +48,17 @@ public class TestIterator {
     assertEquals(33, i.next().intValue());
     // TODO fix the expected values in the assertions below
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(44, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(55, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(66, i.next().intValue());
     assertFalse(i.hasNext());
   }
 
@@ -72,15 +72,20 @@ public class TestIterator {
     list.add(77);
     list.add(66);
     final var i = list.iterator();
+    /*list.remove(Integer.valueOf(77));*/
     while (i.hasNext()) {
       if (i.next() == 77) {
-        i.remove(); // TODO what happens if you use list.remove(Integer.valueOf(77))?
+        i.remove();
+        // TODO what happens if you use list.remove(Integer.valueOf(77))?
+        // Using list.remove(Integer.valueOf(77)) in the loop causes an error because it changes the list while the loop is iterating
+        // Using list.remove(Integer.valueOf(77)) out side of the loop only removes one instance of 77 from the list
       }
     }
     // TODO using assertEquals and List.of, express which values are left in the list
+    assertEquals(List.of(33, 44, 55, 66), list);
     // See TestList.java for examples of how to use List.of; also see the Java List
     // interface for more information
-    fail("Not yet implemented"); // remove this line when done
+    //fail("Not yet implemented"); // remove this line when done
   }
 
   @Test
@@ -97,6 +102,11 @@ public class TestIterator {
     // TODO use an iterator and a while loop to compute the average (mean) of the values
     // (defined as the sum of the items divided by the number of items)
     // testNonempty shows how to use an iterator; use i.hasNext() in the while loop condition
+    Iterator<Integer> i = list.iterator();
+    while (i.hasNext()) {
+      sum += i.next();
+      n++;
+    }
     assertEquals(61.3, sum / n, 0.1);
     assertEquals(7, n);
   }

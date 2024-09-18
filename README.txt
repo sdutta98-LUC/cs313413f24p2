@@ -7,10 +7,14 @@ Using list.remove(Integer.valueOf(77)) out side of the loop only removes one ins
 
 Performance Report:
 
-Size           Time
-10 ----------- 114 ms
-100 ---------- 126 ms
-1000 --------- 451 ms
-10000 -------- 4s 848ms
-100000 ------- 1min 9s
+Size(@1000000 Reps)           Time
+10 -------------------------- 114 ms
+100 ------------------------- 126 ms
+1000 ------------------------ 451 ms
+10000 ----------------------- 4s 848ms
+100000 ---------------------- 1min 9s
+
+
+Inceasing the REPS from 1000000 to 10000000 significantly increases the runtimes from 4.6s to 43.2s
+
 
